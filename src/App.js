@@ -7,8 +7,8 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path={`/ui-design`} element={<Home />} />
-        <Route path={`/ui-design/#/svg-icons`} element={<SvgIcons />} />
+        <Route path={`/`} element={<Home />} />
+        <Route path={`/svg-icons`} element={<SvgIcons />} />
         <Route path={`/*`} element={<NotFound />} />
       </Routes>
     </HashRouter>
