@@ -31,7 +31,7 @@ function ButtonIcon() {
         "transform",
         `translate(0, ${pressCount.current})`
       );
-      press();
+      setTimeout(press, 20);
     });
   };
 
@@ -53,7 +53,7 @@ function ButtonIcon() {
         "transform",
         `translate(0, ${pressCount.current})`
       );
-      release();
+      setTimeout(release, 20);
     });
   };
 
