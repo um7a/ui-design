@@ -41,19 +41,19 @@ function HamburgerMenu() {
       {expanded ? (
         <>
           <div className="MenuItem" style={{ "--animation-delay": "0.5s" }}>
-            <Link to="/ui-design/">
+            <Link to="/">
               <HomeIcon></HomeIcon>
               Home
             </Link>
           </div>
           <div className="MenuItem" style={{ "--animation-delay": "0.6s" }}>
-            <Link to="/ui-design/svg-icons">
+            <Link to="/svg-icons">
               <TileViewIcon></TileViewIcon>
               SVG icons
             </Link>
           </div>
           <div className="MenuItem" style={{ "--animation-delay": "0.7s" }}>
-            <Link to="/ui-design/buttons">
+            <Link to="/buttons">
               <ButtonIcon></ButtonIcon>
               Buttons
             </Link>
