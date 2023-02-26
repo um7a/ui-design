@@ -7,9 +7,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={`/`} element={<Home />} />
-        <Route path={`/svg-icons`} element={<SvgIcons />} />
-        <Route path={`/*`} element={<NotFound />} />
+        <Route path={`/ui-design`} element={<Home />} />
+        <Route path={`/ui-design/svg-icons`} element={<SvgIcons />} />
+        <Route path={`/ui-design/*`} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
