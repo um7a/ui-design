@@ -5,6 +5,10 @@
   width: var(--width);
 }
 
+.HamburgerMenu :hover {
+  cursor: pointer;
+}
+
 .HamburgerMenu .HamburgerIcon {
   text-align: right;
 }
@@ -15,6 +19,7 @@
   animation-fill-mode: forwards;
   margin: 10px 10px 10px 40px;
   opacity: 0;
+  width: fit-content;
 }
 
 .HamburgerMenu .MenuItem a {
@@ -25,7 +30,7 @@
   transition: 0.3s;
 }
 
-.HamburgerMenu .MenuItem a:hover {
+.HamburgerMenu .MenuItem:hover a {
   color: #515151;
 }
 

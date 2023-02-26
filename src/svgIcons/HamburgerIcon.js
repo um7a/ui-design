@@ -64,13 +64,6 @@ function HamburgerIcon(props) {
     });
   };
 
-  useEffect(() => {
-    const svg = document.getElementById("hamburgerForDemo");
-    setTopLine(svg.getElementById("top"));
-    setMiddleLine(svg.getElementById("middle"));
-    setBottomLine(svg.getElementById("bottom"));
-  }, []);
-
   const move = () => {
     if (expanded.current === true) {
       contract();
@@ -80,6 +73,13 @@ function HamburgerIcon(props) {
       expanded.current = true;
     }
   };
+
+  useEffect(() => {
+    const svg = document.getElementById("hamburgerForDemo");
+    setTopLine(svg.getElementById("top"));
+    setMiddleLine(svg.getElementById("middle"));
+    setBottomLine(svg.getElementById("bottom"));
+  }, []);
 
   return (
     <div className="HamburgerIconForDemo">
