@@ -8,10 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-        node-version: [16.x]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -20,3 +16,7 @@ jobs:
       - run: npm ci
       #- run: npm test
       - run: npm run build
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: "."
+      - uses: actions/deploy-pages@main
