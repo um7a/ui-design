@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path={`/ui-design`} element={<Home />} />
         <Route path={`/ui-design/svg-icons`} element={<SvgIcons />} />
-        <Route path={`/ui-design/*`} element={<NotFound />} />
+        <Route path={`/*`} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
