@@ -1,0 +1,29 @@
+.NotFound {
+  display: flex;
+  height: 100%;
+}
+
+.NotFound .Main {
+  flex-grow: 1;
+}
+
+.NotFound .Main .StatusCode {
+  text-align: center;
+}
+
+.NotFound .Main .StatusCode p {
+  color: #e2e2e2;
+  font-size: 300px;
+  font-weight: 100;
+  margin: 0;
+}
+
+.NotFound .Main .DescriptionSpace {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.NotFound .Main .DescriptionSpace p {
+  color: #858585;
+  font-weight: 200;
+}

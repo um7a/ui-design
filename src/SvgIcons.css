@@ -1,0 +1,49 @@
+.SvgIcons {
+  display: flex;
+  height: 100%;
+}
+
+.SvgIcons .Main {
+  flex-grow: 1;
+}
+
+.SvgIcons .Main .TitleSpace {
+  text-align: center;
+}
+
+.SvgIcons .Main .TitleSpace p {
+  color: #e2e2e2;
+  font-size: 50px;
+  font-weight: 100;
+  margin: 50px 0 20px;
+}
+
+.SvgIcons .Main .DescriptionSpace {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.SvgIcons .Main .DescriptionSpace p {
+  color: #858585;
+  font-weight: 200;
+}
+
+.SvgIcons .Main .IconGridSpace {
+  width: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.SvgIcons .Main .IconSpace {
+  margin: 5px 5px;
+  text-align: center;
+}
+
+.SvgIcons .Main .IconSpace p {
+  color: #858585;
+  font-size: 10px;
+  font-weight: 200;
+  margin: 4px 0;
+}

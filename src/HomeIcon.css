@@ -1,0 +1,9 @@
+.HomeIcon {
+  float: left;
+  padding-right: 5px;
+  margin-top: -1px;
+  transform: scale(0.7, 0.7);
+}
+.HomeIcon:hover {
+  cursor: pointer;
+}

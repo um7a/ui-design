@@ -1,0 +1,35 @@
+.Home {
+  display: flex;
+  height: 100%;
+}
+
+.Home .Main {
+  flex-grow: 1;
+}
+
+.Home .Main .TitleSpace {
+  text-align: center;
+}
+
+.Home .Main .TitleSpace p {
+  color: #e2e2e2;
+  font-size: 50px;
+  font-weight: 100;
+  margin: 50px 0 20px;
+}
+
+.Home .Main .DescriptionSpace {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.Home .Main .DescriptionSpace p {
+  color: #858585;
+  font-weight: 200;
+}
+
+.Home .Main .DescriptionSpace a {
+  color: #b8b8b8;
+  font-weight: 200;
+  text-decoration: none;
+}

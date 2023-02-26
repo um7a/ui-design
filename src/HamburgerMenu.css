@@ -1,0 +1,41 @@
+.HamburgerMenu {
+  background-color: var(--bg-color);
+  padding: 10px 10px;
+  transition: all 0.8s ease;
+  width: var(--width);
+}
+
+.HamburgerMenu .HamburgerIcon {
+  text-align: right;
+}
+
+.HamburgerMenu .MenuItem {
+  animation: fadeIn 0.7s ease 0s 1 normal;
+  animation-delay: var(--animation-delay);
+  animation-fill-mode: forwards;
+  margin: 10px 10px 10px 40px;
+  opacity: 0;
+}
+
+.HamburgerMenu .MenuItem a {
+  color: #858585;
+  font-weight: 200;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.HamburgerMenu .MenuItem a:hover {
+  color: #515151;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
