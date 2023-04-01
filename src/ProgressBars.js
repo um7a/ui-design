@@ -18,11 +18,9 @@ function padByZero(unsignedInteger, digit) {
 }
 
 function ProgressBars() {
-  //const moveFps = 60; // for test of resetting
-  const moveFps = 20;
-  const resetFps = 60;
-  //const startMSec = 3000; // for test of resetting
-  const startMSec = 30000;
+  const moveFps = 60;
+  const resetFps = 100;
+  const startMSec = 3000;
   const startSec = Math.ceil(startMSec / 1000);
   const startClockSec = startSec % 60;
   const startClockMin = Math.ceil((startSec - startClockSec) / 60) % 60;
@@ -86,10 +84,10 @@ function ProgressBars() {
     }, 1000 / moveFps);
   };
 
-  const resetAcceleratePercentageEnd = 10;
-  const resetSlowDownPercentageStart = 40;
+  const resetAcceleratePercentageEnd = 10; // 0 ~ 10%
+  const resetSlowDownPercentageStart = 40; // 40 ~ 100%
   const resetPercentagePerFrameStart = 1;
-  const resetPercentagePerFrameMax = 15;
+  const resetPercentagePerFrameMax = 10;
   const resetPercentagePerFrameEnd = 0.01;
   const resetPercentagePerFrameDiffStartToMax =
     resetPercentagePerFrameMax - resetPercentagePerFrameStart;
