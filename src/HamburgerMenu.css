@@ -17,15 +17,15 @@
   animation: fadeIn 0.7s ease 0s 1 normal;
   animation-delay: var(--animation-delay);
   animation-fill-mode: forwards;
-  margin: 10px 10px 10px 40px;
+  margin: 10px 50px 10px 10px;
   opacity: 0;
-  width: fit-content;
 }
 
 .HamburgerMenu .MenuItem a {
   color: #858585;
   font-weight: 200;
   font-size: 18px;
+  margin-left: 30px;
   text-decoration: none;
   transition: 0.3s;
 }

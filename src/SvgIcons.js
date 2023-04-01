@@ -5,7 +5,14 @@ import HomeIcon from "./svgIcons/HomeIcon";
 import TileViewIcon from "./svgIcons/TileViewIcon";
 import ButtonIcon from "./svgIcons/Button";
 
+import { useState } from "react";
+
 function SvgIcons() {
+  // state for hamburger icon
+  const [expanded, setExpanded] = useState(false);
+  // state for button icon
+  const [pressed, setPressed] = useState(false);
+
   return (
     <div className="SvgIcons">
       <HamburgerMenu></HamburgerMenu>
@@ -19,7 +26,10 @@ function SvgIcons() {
         </div>
         <div className="IconGridSpace">
           <div className="IconSpace">
-            <HamburgerIcon setExpanded={() => {}}></HamburgerIcon>
+            <HamburgerIcon
+              expanded={expanded}
+              setExpanded={setExpanded}
+            ></HamburgerIcon>
             <p>hamburger</p>
           </div>
 
@@ -33,8 +43,16 @@ function SvgIcons() {
             <p>tile view</p>
           </div>
 
-          <div className="IconSpace">
-            <ButtonIcon></ButtonIcon>
+          <div
+            className="IconSpace"
+            onMouseOver={() => {
+              setPressed(true);
+            }}
+            onMouseLeave={() => {
+              setPressed(false);
+            }}
+          >
+            <ButtonIcon pressed={pressed}></ButtonIcon>
             <p>button</p>
           </div>
         </div>

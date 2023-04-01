@@ -1,14 +1,26 @@
 import { useEffect, useState, useRef } from "react";
 
+function makeId(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+    counter += 1;
+  }
+  return result;
+}
+
 function HamburgerIcon(props) {
   const lineColor = "#585858";
   const lineStrokeWidth = 1;
 
+  const elemId = makeId(10);
   const [topLine, setTopLine] = useState(undefined);
   const [middleLine, setMiddleLine] = useState(undefined);
   const [bottomLine, setBottomLine] = useState(undefined);
 
-  const expanded = useRef(false);
   const middleOpacity = useRef(100);
 
   const expand = () => {
@@ -65,25 +77,23 @@ function HamburgerIcon(props) {
   };
 
   const move = () => {
-    if (expanded.current === true) {
+    if (props.expanded === true) {
       contract();
-      expanded.current = false;
     } else {
       expand();
-      expanded.current = true;
     }
   };
 
   useEffect(() => {
-    const svg = document.getElementById("hamburgerForDemo");
+    const svg = document.getElementById(elemId);
     setTopLine(svg.getElementById("top"));
     setMiddleLine(svg.getElementById("middle"));
     setBottomLine(svg.getElementById("bottom"));
   }, []);
 
   return (
-    <div className="HamburgerIconForDemo">
-      <svg id="hamburgerForDemo" width="22" height="22" onClick={move}>
+    <div className="HamburgerIcon">
+      <svg id={elemId} width="22" height="22" onClick={move}>
         <line
           id="top"
           x1="1"

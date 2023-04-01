@@ -17,8 +17,8 @@ function HomeIcon() {
   //    y
   //
   return (
-    <div className="HomeIconForDemo">
-      <svg id="homeForDemo" width="22" height="22">
+    <div className="HomeIcon">
+      <svg id="home" width="22" height="22">
         <path
           d="M 11 1 L 21 9 L 20 9 L 20 21 L 15 21 L 15 13 L 7 13 L 7 21 L 2 21 L 2 9 L 1 9 Z"
           stroke={lineColor}

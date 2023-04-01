@@ -1,0 +1,177 @@
+.ProgressBars {
+  display: flex;
+  height: 100%;
+}
+
+.ProgressBars .Main {
+  flex-grow: 1;
+}
+
+.ProgressBars .Main .TitleSpace {
+  text-align: center;
+}
+
+.ProgressBars .Main .TitleSpace p {
+  color: #e2e2e2;
+  font-size: 50px;
+  font-weight: 100;
+  margin: 50px 0 20px;
+}
+
+.ProgressBars .Main .GridDescriptionSpace {
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+
+.ProgressBars .Main .GridDescriptionSpace p {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: fit-content;
+  color: #858585;
+  font-weight: 200;
+  font-size: 15px;
+  border-bottom: solid 1px #535353;
+}
+
+.ProgressBars .Main .ProgressBarGridSpace {
+  width: 50%;
+  height: 115px;
+  min-width: 400px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ProgressBars .Main .CircularProgressBarSpace {
+  height: 0;
+  margin: 20px 25px 0 5px;
+  position: relative;
+  width: 100px;
+}
+
+.ProgressBars .Main .StraightProgressBarSpace {
+  height: 0;
+  margin: 20px 25px 0 5px;
+  position: relative;
+  width: 100px;
+}
+
+.ProgressBars .Main .WaterProgressBarSpace {
+  height: 0;
+  margin: 20px 25px 0 5px;
+  position: relative;
+  width: 100px;
+}
+
+.ProgressBars .Main .CircularProgressBarSpace .Label {
+  color: #e2e2e2;
+  position: absolute;
+  padding-top: 55px;
+  width: 120px;
+  height: 120px;
+  font-weight: 700;
+  display: flex;
+}
+
+.ProgressBars .Main .StraightProgressBarSpace .Label {
+  color: #e2e2e2;
+  position: absolute;
+  padding-top: 40px;
+  width: 120px;
+  height: 120px;
+  font-weight: 700;
+  display: flex;
+}
+
+.ProgressBars .Main .WaterProgressBarSpace .Label {
+  color: #e2e2e2;
+  position: absolute;
+  padding-top: 55px;
+  width: 120px;
+  height: 120px;
+  font-weight: 700;
+  display: flex;
+}
+
+.Percentage {
+  margin: 0px 4px 0px 44px;
+  width: 20px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.PercentUnit {
+  margin: 2px 0px;
+  font-size: 8px;
+}
+
+.Second {
+  margin: 0px 4px 0px 38px;
+  width: 20px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.SecondUnit {
+  margin: 2px 0px;
+  font-size: 8px;
+}
+
+.ClockHour {
+  margin: 0px 0px 0px 31px;
+  width: 15px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.ClockColon {
+  margin: 0px 0px 0px 2px;
+  font-size: 10px;
+}
+
+.ClockMinute {
+  margin: 0px 0px;
+  width: 15px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.ClockSecond {
+  margin: 0px 0px;
+  width: 15px;
+  text-align: right;
+  font-size: 10px;
+}
+
+.CircularProgressBar {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #161616;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.StraightProgressBar {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #161616;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.WaterProgressBar {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: #161616;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.WaterProgressBar svg {
+  border-radius: 10px;
+}

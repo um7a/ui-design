@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-function ButtonIcon() {
+function ButtonIcon(props) {
   const lineColor = "#585858";
   const lineStrokeWidth = 1;
 
@@ -9,11 +9,19 @@ function ButtonIcon() {
   const [buttonRightMiddle, setButtonRightMiddle] = useState(undefined);
 
   const pressCount = useRef(0);
+  const pressing = useRef(false);
   const pressCountMax = 4;
   const middleUpper = 13;
 
   const press = () => {
+    pressing.current = true;
     if (pressCount.current >= pressCountMax) {
+      pressing.current = false;
+      return;
+    }
+    if (props.press === false) {
+      pressing.current = false;
+      release();
       return;
     }
     requestAnimationFrame(() => {
@@ -38,6 +46,14 @@ function ButtonIcon() {
     if (pressCount.current <= 0) {
       return;
     }
+    if (props.press === true) {
+      return;
+    }
+    if (pressing.current === true) {
+      // press() function is being called. So do nothing and execute release() later.
+      setTimeout(release, 20);
+      return;
+    }
     requestAnimationFrame(() => {
       pressCount.current--;
       buttonLeftMiddle.setAttribute(
@@ -57,21 +73,23 @@ function ButtonIcon() {
   };
 
   useEffect(() => {
-    const svg = document.getElementById("buttonForDemo");
+    const svg = document.getElementById("button");
     setButtonTop(svg.getElementById("buttonTop"));
     setButtonLeftMiddle(svg.getElementById("buttonLeftMiddle"));
     setButtonRightMiddle(svg.getElementById("buttonRightMiddle"));
   }, []);
 
+  useEffect(() => {
+    if (props.pressed === true) {
+      press();
+    } else {
+      release();
+    }
+  }, [props.pressed]);
+
   return (
-    <div className="ButtonIconForDemo">
-      <svg
-        id="buttonForDemo"
-        width="22"
-        height="22"
-        onMouseEnter={press}
-        onMouseLeave={release}
-      >
+    <div className="ButtonIcon">
+      <svg id="button" width="22" height="22">
         <path
           id="arrow"
           d="

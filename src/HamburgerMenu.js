@@ -1,10 +1,12 @@
 import "./HamburgerMenu.css";
-import HamburgerIcon from "./HamburgerIcon";
-import HomeIcon from "./HomeIcon";
+import HamburgerIcon from "./svgIcons/HamburgerIcon";
+import HomeIcon from "./svgIcons/HomeIcon";
+import TileViewIcon from "./svgIcons/TileViewIcon";
+import ProgressBarIcon from "./svgIcons/ProgressBarIcon";
+import ButtonIcon from "./svgIcons/Button";
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import TileViewIcon from "./TileViewIcon";
-import ButtonIcon from "./Button";
 
 const widthMin = "20px";
 const widthMax = "230px";
@@ -12,7 +14,11 @@ const contractedBgColor = "#1a1a1a";
 const expandedBgColor = "#1e1e1e";
 
 function HamburgerMenu() {
+  // state for hamburger icon
   const [expanded, setExpanded] = useState(false);
+  // state for button icon
+  const [pressed, setPressed] = useState(false);
+
   const [width, setWidth] = useState(widthMin);
 
   useEffect(() => {
@@ -41,22 +47,28 @@ function HamburgerMenu() {
       {expanded ? (
         <>
           <div className="MenuItem" style={{ "--animation-delay": "0.5s" }}>
-            <Link to="/">
-              <HomeIcon></HomeIcon>
-              Home
-            </Link>
+            <Link to="/">Home</Link>
           </div>
+
           <div className="MenuItem" style={{ "--animation-delay": "0.6s" }}>
-            <Link to="/svg-icons">
-              <TileViewIcon></TileViewIcon>
-              SVG icons
-            </Link>
+            <Link to="/svg-icons">SVG icons</Link>
           </div>
-          <div className="MenuItem" style={{ "--animation-delay": "0.7s" }}>
-            <Link to="/buttons">
-              <ButtonIcon></ButtonIcon>
-              Buttons
-            </Link>
+
+          <div
+            className="MenuItem"
+            onMouseOver={() => {
+              setPressed(true);
+            }}
+            onMouseLeave={() => {
+              setPressed(false);
+            }}
+            style={{ "--animation-delay": "0.7s" }}
+          >
+            <Link to="/buttons">Buttons</Link>
+          </div>
+
+          <div className="MenuItem" style={{ "--animation-delay": "0.8s" }}>
+            <Link to="/progress-bars">Progress Bars</Link>
           </div>
         </>
       ) : null}
