@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function CircularProgressBar(props) {
   const lineStrokeWidth = 5;
@@ -11,9 +11,7 @@ function CircularProgressBar(props) {
   const startX = centerX + radius;
   const startY = centerY;
 
-  const [percentage, setPercentage] = useState(props.percentage);
-
-  const angle = useRef((2 * Math.PI * percentage) / 100);
+  const angle = useRef((2 * Math.PI * props.percentage) / 100);
   const endX = useRef(centerX + radius * Math.cos(angle.current));
   const endY = useRef(centerY + radius * Math.sin(angle.current));
   const largeArcFlag = useRef(angle.current > Math.PI ? 1 : 0);
@@ -23,8 +21,7 @@ function CircularProgressBar(props) {
   const baseEndY = centerY + radius * Math.sin(baseAngle);
 
   useEffect(() => {
-    setPercentage(props.percentage);
-    angle.current = (2 * Math.PI * percentage) / 100;
+    angle.current = (2 * Math.PI * props.percentage) / 100;
     endX.current = centerX + radius * Math.cos(angle.current);
     endY.current = centerY + radius * Math.sin(angle.current);
     largeArcFlag.current = angle.current > Math.PI ? 1 : 0;

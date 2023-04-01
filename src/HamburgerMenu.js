@@ -1,9 +1,5 @@
 import "./HamburgerMenu.css";
 import HamburgerIcon from "./svgIcons/HamburgerIcon";
-import HomeIcon from "./svgIcons/HomeIcon";
-import TileViewIcon from "./svgIcons/TileViewIcon";
-import ProgressBarIcon from "./svgIcons/ProgressBarIcon";
-import ButtonIcon from "./svgIcons/Button";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -16,8 +12,6 @@ const expandedBgColor = "#1e1e1e";
 function HamburgerMenu() {
   // state for hamburger icon
   const [expanded, setExpanded] = useState(false);
-  // state for button icon
-  const [pressed, setPressed] = useState(false);
 
   const [width, setWidth] = useState(widthMin);
 
@@ -54,16 +48,7 @@ function HamburgerMenu() {
             <Link to="/svg-icons">SVG icons</Link>
           </div>
 
-          <div
-            className="MenuItem"
-            onMouseOver={() => {
-              setPressed(true);
-            }}
-            onMouseLeave={() => {
-              setPressed(false);
-            }}
-            style={{ "--animation-delay": "0.7s" }}
-          >
+          <div className="MenuItem" style={{ "--animation-delay": "0.7s" }}>
             <Link to="/buttons">Buttons</Link>
           </div>
 
