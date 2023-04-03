@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import "./ProgressBars.css";
 import HamburgerMenu from "./HamburgerMenu";
@@ -19,30 +19,31 @@ function padByZero(unsignedInteger, digit) {
 
 function ProgressBars() {
   const moveFps = 60;
-  const resetFps = 100;
-  const startMSec = 3000;
-  const startSec = Math.ceil(startMSec / 1000);
-  const startClockSec = startSec % 60;
-  const startClockMin = Math.ceil((startSec - startClockSec) / 60) % 60;
-  const startClockHour = Math.ceil(
-    (startSec - startClockSec - startClockMin * 60) / 3600
-  );
+  const resetFps = 60;
 
-  const [remainingMSec, setRemainingMSec] = useState(startMSec);
-  const [remainingSec, setRemainingSec] = useState(startSec);
-  const [remainingClockSec, setRemainingClockSec] = useState(startClockSec);
-  const [remainingClockMin, setRemainingClockMin] = useState(startClockMin);
-  const [remainingClockHour, setRemainingClockHour] = useState(startClockHour);
-  const [percentage, setPercentage] = useState(
-    (remainingMSec / startMSec) * 100
-  );
+  const maxMSec = 5000;
+  const [remainingMSec, setRemainingMSec] = useState(0);
+  const [remainingSec, setRemainingSec] = useState(0);
+  const [remainingClockSec, setRemainingClockSec] = useState(0);
+  const [remainingClockMin, setRemainingClockMin] = useState(0);
+  const [remainingClockHour, setRemainingClockHour] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+
+  const [remainingMSecUpdateIntervalId, setRemainingMSecUpdateIntervalId] =
+    useState(undefined);
+
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   const calcAllFromRemainingMSec = (newRemainingMSec) => {
     if (newRemainingMSec < 0) {
       newRemainingMSec = 0;
     }
-    if (newRemainingMSec >= startMSec) {
-      newRemainingMSec = startMSec - 0.001;
+    if (newRemainingMSec >= maxMSec) {
+      // FIXME
+      // When the newRemainingMSec equals with startMSec,
+      // the progress bar can not draw correctly.
+      newRemainingMSec = maxMSec - 0.001;
     }
     const newRemainingSec = Math.ceil(newRemainingMSec / 1000);
     const newRemainingClockSec = newRemainingSec % 60;
@@ -52,12 +53,14 @@ function ProgressBars() {
       (newRemainingSec - newRemainingClockSec - newRemainingClockMin * 60) /
         3600
     );
+    const newPercentage = (newRemainingMSec / maxMSec) * 100;
+
     setRemainingMSec(newRemainingMSec);
     setRemainingSec(newRemainingSec);
     setRemainingClockSec(newRemainingClockSec);
     setRemainingClockMin(newRemainingClockMin);
     setRemainingClockHour(newRemainingClockHour);
-    setPercentage((remainingMSec / startMSec) * 100);
+    setPercentage(newPercentage);
   };
 
   const calcAllFromPercentage = (newPercentage) => {
@@ -67,66 +70,84 @@ function ProgressBars() {
     if (newPercentage > 100) {
       newPercentage = 100;
     }
-    const newRemainingMSec = (startMSec * newPercentage) / 100;
+    const newRemainingMSec = (maxMSec * newPercentage) / 100;
     calcAllFromRemainingMSec(newRemainingMSec);
   };
 
-  const isResetting = useRef(false);
-
-  const moveRemainingMSec = () => {
-    setTimeout(() => {
-      let newRemainingMSec = remainingMSec - 1000 / moveFps;
-      calcAllFromRemainingMSec(newRemainingMSec);
-
-      if (remainingMSec <= 0) {
-        isResetting.current = true;
-      }
-    }, 1000 / moveFps);
-  };
-
   const resetAcceleratePercentageEnd = 10; // 0 ~ 10%
-  const resetSlowDownPercentageStart = 40; // 40 ~ 100%
-  const resetPercentagePerFrameStart = 1;
-  const resetPercentagePerFrameMax = 10;
+  const resetSlowDownPercentageStart = 20; // 20 ~ 100%
+  const resetPercentagePerFrameStart = 0.1;
+  const resetPercentagePerFrameMax = 5;
   const resetPercentagePerFrameEnd = 0.01;
   const resetPercentagePerFrameDiffStartToMax =
     resetPercentagePerFrameMax - resetPercentagePerFrameStart;
   const resetPercentagePerFrameDiffMaxToEnd =
     resetPercentagePerFrameMax - resetPercentagePerFrameEnd;
   const resetPercentagePerFrame = useRef(resetPercentagePerFrameStart);
-  const reset = () => {
-    setTimeout(() => {
-      if (percentage < resetAcceleratePercentageEnd) {
-        resetPercentagePerFrame.current =
-          resetPercentagePerFrameStart +
-          (resetPercentagePerFrameDiffStartToMax /
-            resetAcceleratePercentageEnd) *
-            percentage;
-      } else if (percentage < resetSlowDownPercentageStart) {
-        resetPercentagePerFrame.current = resetPercentagePerFrameMax;
-      } else {
-        resetPercentagePerFrame.current =
-          resetPercentagePerFrameMax -
-          (resetPercentagePerFrameDiffMaxToEnd /
-            (100 - resetSlowDownPercentageStart)) *
-            (percentage - resetSlowDownPercentageStart);
-      }
-      const newPercentage = percentage + resetPercentagePerFrame.current;
-      calcAllFromPercentage(newPercentage);
 
-      if (newPercentage >= 100) {
-        isResetting.current = false;
-      }
-    }, 1000 / resetFps);
-  };
+  // Initialize when mounted.
+  useEffect(() => {
+    calcAllFromRemainingMSec(0);
+    setIsResetting(true);
+    setIsInitialized(true);
+  }, []);
 
-  requestAnimationFrame(() => {
-    if (!isResetting.current) {
-      moveRemainingMSec();
-    } else {
-      reset();
+  useEffect(() => {
+    if (isInitialized === false) {
+      // Application has not initialized yet.
+      // Do nothing.
+      return;
     }
-  });
+    // This time, isResetting flag changed.
+    clearInterval(remainingMSecUpdateIntervalId);
+    let newIntervalId;
+    if (isResetting === true) {
+      // Start resetting remainingMSec.
+      newIntervalId = setInterval(() => {
+        // NOTE
+        // This setPercentage seems not to necessary.
+        // But to get the newest value of percentage, it is needed.
+        setPercentage((percentage) => {
+          if (percentage < resetAcceleratePercentageEnd) {
+            resetPercentagePerFrame.current =
+              resetPercentagePerFrameStart +
+              (resetPercentagePerFrameDiffStartToMax /
+                resetAcceleratePercentageEnd) *
+                percentage;
+          } else if (percentage < resetSlowDownPercentageStart) {
+            resetPercentagePerFrame.current = resetPercentagePerFrameMax;
+          } else {
+            resetPercentagePerFrame.current =
+              resetPercentagePerFrameMax -
+              (resetPercentagePerFrameDiffMaxToEnd /
+                (100 - resetSlowDownPercentageStart)) *
+                (percentage - resetSlowDownPercentageStart);
+          }
+          const newPercentage = percentage + resetPercentagePerFrame.current;
+          calcAllFromPercentage(newPercentage);
+
+          if (newPercentage >= 100) {
+            setIsResetting(false);
+          }
+        });
+      }, 1000 / resetFps);
+    } else {
+      // Start moving remainingMSec.
+      newIntervalId = setInterval(() => {
+        // NOTE
+        // This setRemainingMSec seems not to necessary.
+        // But to get the newest value of remainingMSec, it is needed.
+        setRemainingMSec((remainingMSec) => {
+          let newRemainingMSec = remainingMSec - 1000 / moveFps;
+          calcAllFromRemainingMSec(newRemainingMSec);
+          setIsResetting(newRemainingMSec <= 0);
+          return newRemainingMSec;
+        });
+      }, 1000 / moveFps);
+    }
+    setRemainingMSecUpdateIntervalId(newIntervalId);
+    return () => clearInterval(newIntervalId);
+  }, [isResetting, isInitialized]);
 
   return (
     <div className="ProgressBars">
@@ -144,23 +165,21 @@ function ProgressBars() {
         <div className="ProgressBarGridSpace">
           <div className="CircularProgressBarSpace">
             <CircularProgressBar
-              percentage={percentage}
+              percentage={(remainingMSec / maxMSec) * 100}
               colorId="PinkAndOrange"
               colorLeft="#ff9500"
               colorRight="#ff0099"
               colorBase="#1a1a1a"
             ></CircularProgressBar>
             <div className="Label">
-              <div className="Percentage">
-                {Math.ceil((remainingMSec / startMSec) * 100)}
-              </div>
+              <div className="Percentage">{Math.ceil(percentage)}</div>
               <div className="PercentUnit">%</div>
             </div>
           </div>
 
           <div className="CircularProgressBarSpace">
             <CircularProgressBar
-              percentage={percentage}
+              percentage={(remainingMSec / maxMSec) * 100}
               colorId="BlueAndGreen"
               colorLeft="#00b09b"
               colorRight="#96c93d"
@@ -174,7 +193,7 @@ function ProgressBars() {
 
           <div className="CircularProgressBarSpace">
             <CircularProgressBar
-              percentage={percentage}
+              percentage={(remainingMSec / maxMSec) * 100}
               colorId="BlueAndLightBlue"
               colorLeft="#00e1ff"
               colorRight="#7300ff"
@@ -209,9 +228,7 @@ function ProgressBars() {
               colorBase="#1a1a1a"
             ></StraightProgressBar>
             <div className="Label">
-              <div className="Percentage">
-                {Math.ceil((remainingMSec / startMSec) * 100)}
-              </div>
+              <div className="Percentage">{Math.ceil(percentage)}</div>
               <div className="PercentUnit">%</div>
             </div>
           </div>
@@ -268,9 +285,7 @@ function ProgressBars() {
               colorBase="#1a1a1a"
             ></WaterProgressBar>
             <div className="Label">
-              <div className="Percentage">
-                {Math.ceil((remainingMSec / startMSec) * 100)}
-              </div>
+              <div className="Percentage">{Math.ceil(percentage)}</div>
               <div className="PercentUnit">%</div>
             </div>
           </div>
