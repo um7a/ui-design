@@ -108,6 +108,14 @@ function ProgressBars() {
         // This setPercentage seems not to necessary.
         // But to get the newest value of percentage, it is needed.
         setPercentage((percentage) => {
+          console.log(`### in resetting interval. percentage: ${percentage}`);
+          // FIXME
+          // This case happens when hamburger menu was clicked until resetting the progress bar.
+          // I don't know why but it seems not to occur when moving remainingMSec.
+          if (percentage === undefined) {
+            calcAllFromPercentage(0);
+            return;
+          }
           if (percentage < resetAcceleratePercentageEnd) {
             resetPercentagePerFrame.current =
               resetPercentagePerFrameStart +
