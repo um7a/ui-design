@@ -98,7 +98,7 @@ function ProgressBars() {
       // Do nothing.
       return;
     }
-    // This time, isResetting flag changed.
+    // Reaching this code means that isResetting flag has changed.
     clearInterval(remainingMSecUpdateIntervalId);
     let newIntervalId;
     if (isResetting === true) {
@@ -108,13 +108,6 @@ function ProgressBars() {
         // This setPercentage seems not to necessary.
         // But to get the newest value of percentage, it is needed.
         setPercentage((percentage) => {
-          // FIXME
-          // This case happens when hamburger menu was clicked until resetting the progress bar.
-          // I don't know why but it seems not to occur when moving remainingMSec.
-          if (percentage === undefined) {
-            calcAllFromPercentage(0);
-            return;
-          }
           if (percentage < resetAcceleratePercentageEnd) {
             resetPercentagePerFrame.current =
               resetPercentagePerFrameStart +
@@ -130,12 +123,19 @@ function ProgressBars() {
                 (100 - resetSlowDownPercentageStart)) *
                 (percentage - resetSlowDownPercentageStart);
           }
-          const newPercentage = percentage + resetPercentagePerFrame.current;
+          let newPercentage = percentage + resetPercentagePerFrame.current;
+          if (newPercentage < 0) {
+            newPercentage = 0;
+          }
+          if (newPercentage > 100) {
+            newPercentage = 100;
+          }
           calcAllFromPercentage(newPercentage);
 
           if (newPercentage >= 100) {
             setIsResetting(false);
           }
+          return newPercentage;
         });
       }, 1000 / resetFps);
     } else {
