@@ -66,31 +66,37 @@
 }
 
 .ProgressBars .Main .CircularProgressBarSpace .Label {
+  background-color: #161616;
+  border-radius: 10px;
   color: #e2e2e2;
   position: absolute;
   padding-top: 55px;
   width: 120px;
-  height: 120px;
+  height: 65px;
   font-weight: 700;
   display: flex;
 }
 
 .ProgressBars .Main .StraightProgressBarSpace .Label {
+  background-color: #161616;
+  border-radius: 10px;
   color: #e2e2e2;
   position: absolute;
   padding-top: 40px;
   width: 120px;
-  height: 120px;
+  height: 80px;
   font-weight: 700;
   display: flex;
 }
 
 .ProgressBars .Main .WaterProgressBarSpace .Label {
+  background-color: #161616;
+  border-radius: 10px;
   color: #e2e2e2;
   position: absolute;
   padding-top: 55px;
   width: 120px;
-  height: 120px;
+  height: 65px;
   font-weight: 700;
   display: flex;
 }
@@ -146,30 +152,27 @@
 }
 
 .CircularProgressBar {
+  background: rgba(0, 0, 0, 0);
   position: absolute;
   width: 100px;
   height: 100px;
-  background-color: #161616;
   padding: 10px 10px;
-  border-radius: 10px;
 }
 
 .StraightProgressBar {
+  background: rgba(0, 0, 0, 0);
   position: absolute;
   width: 100px;
   height: 100px;
-  background-color: #161616;
   padding: 10px 10px;
-  border-radius: 10px;
 }
 
 .WaterProgressBar {
+  background: rgba(0, 0, 0, 0);
   position: absolute;
   width: 100px;
   height: 100px;
-  background-color: #161616;
   padding: 10px 10px;
-  border-radius: 10px;
 }
 
 .WaterProgressBar svg {
