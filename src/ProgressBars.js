@@ -103,7 +103,7 @@ function ProgressBars() {
       // Do nothing.
       return;
     }
-    // Reaching this code means that isResetting flag has changed.
+    // Reaching this code means that isResetting flag has been changed.
     clearInterval(remainingMSecUpdateIntervalId);
     let newIntervalId;
     if (isResetting === true) {
@@ -248,7 +248,6 @@ function ProgressBars() {
             </div>
             <StraightProgressBar
               percentage={percentage}
-              colorId="PinkAndOrange"
               colorLeft="#ff9500"
               colorRight="#ff0099"
               colorBase="#1a1a1a"
@@ -262,7 +261,6 @@ function ProgressBars() {
             </div>
             <StraightProgressBar
               percentage={percentage}
-              colorId="BlueAndGreen"
               colorLeft="#00b09b"
               colorRight="#96c93d"
               colorBase="#1a1a1a"
@@ -286,7 +284,6 @@ function ProgressBars() {
 
             <StraightProgressBar
               percentage={percentage}
-              colorId="BlueAndLightBlue"
               colorLeft="#00e1ff"
               colorRight="#7300ff"
               colorBase="#1a1a1a"
@@ -306,7 +303,6 @@ function ProgressBars() {
             </div>
             <WaterProgressBar
               percentage={percentage}
-              colorId="WaterPinkAndOrange"
               colorLeft="#ff9500"
               colorRight="#ff0099"
               colorBase="#1a1a1a"
@@ -320,7 +316,6 @@ function ProgressBars() {
             </div>
             <WaterProgressBar
               percentage={percentage}
-              colorId="WaterBlueAndGreen"
               colorLeft="#00b09b"
               colorRight="#96c93d"
               colorBase="#1a1a1a"
@@ -343,7 +338,6 @@ function ProgressBars() {
             </div>
             <WaterProgressBar
               percentage={percentage}
-              colorId="WaterBlueAndLightBlue"
               colorLeft="#00e1ff"
               colorRight="#7300ff"
               colorBase="#1a1a1a"

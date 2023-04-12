@@ -1,5 +1,17 @@
 import { useEffect, useRef } from "react";
 
+function makeId(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+    counter += 1;
+  }
+  return result;
+}
+
 function WaterProgressBar(props) {
   const lineStrokeWidth = 1;
   const y = 2;
@@ -45,6 +57,8 @@ function WaterProgressBar(props) {
   const endX = -200;
   const endY = y;
 
+  const linearGradientId = useRef(makeId(10));
+
   let moveX = useRef(Math.random() * 100);
   let moveY = useRef(0);
   const moveWave = () => {
@@ -65,7 +79,10 @@ function WaterProgressBar(props) {
     <div className="WaterProgressBar">
       <svg id="water" width="100" height="100">
         <defs>
-          <linearGradient id={props.colorId} gradientUnits="objectBoundingBox">
+          <linearGradient
+            id={linearGradientId.current}
+            gradientUnits="objectBoundingBox"
+          >
             <stop className="s1" offset="0%" stopColor={props.colorRight} />
             <stop className="s3" offset="33.3%" stopColor={props.colorLeft} />
             <stop className="s5" offset="66.6%" stopColor={props.colorRight} />
@@ -94,7 +111,7 @@ function WaterProgressBar(props) {
             `S ${wave6X} ${wave6Y} ` +
             `${endX} ${endY}`
           }
-          stroke={`url(#${props.colorId})`}
+          stroke={`url(#${linearGradientId.current})`}
           strokeWidth={lineStrokeWidth}
           transform={`translate(${moveX.current}, ${moveY.current})`}
           fillOpacity="0%"
