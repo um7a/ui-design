@@ -184,7 +184,7 @@ function ProgressBars() {
                 percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -201,7 +201,7 @@ function ProgressBars() {
                 percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
+                colorBase="#1a201a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -221,7 +221,7 @@ function ProgressBars() {
                 )}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -250,7 +250,7 @@ function ProgressBars() {
                 )}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -269,7 +269,7 @@ function ProgressBars() {
                 percentage={Math.max(percentage, 0.1)}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
               ></StraightProgressBar>
             </div>
 
@@ -282,7 +282,7 @@ function ProgressBars() {
                 percentage={percentage}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
+                colorBase="#1a201a"
               ></StraightProgressBar>
             </div>
 
@@ -295,7 +295,7 @@ function ProgressBars() {
                 percentage={Math.max(100 - percentage, 0.1)}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></StraightProgressBar>
             </div>
 
@@ -317,7 +317,7 @@ function ProgressBars() {
                 percentage={100 - percentage}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></StraightProgressBar>
             </div>
           </div>
@@ -333,7 +333,7 @@ function ProgressBars() {
                 percentage={percentage}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
               ></WaterProgressBar>
             </div>
 
@@ -346,7 +346,7 @@ function ProgressBars() {
                 percentage={percentage}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
+                colorBase="#1a201a"
               ></WaterProgressBar>
             </div>
 
@@ -359,7 +359,7 @@ function ProgressBars() {
                 percentage={100 - percentage}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></WaterProgressBar>
             </div>
 
@@ -381,7 +381,7 @@ function ProgressBars() {
                 percentage={100 - percentage}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></WaterProgressBar>
             </div>
           </div>
@@ -409,7 +409,7 @@ function ProgressBars() {
                 percentage={Math.max((remainingMSec / maxMSec) * 100, 0.2)}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -426,7 +426,7 @@ function ProgressBars() {
                 percentage={Math.min(-(remainingMSec / maxMSec) * 100, -0.2)}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
+                colorBase="#1a201a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -446,7 +446,7 @@ function ProgressBars() {
                 )}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -475,7 +475,7 @@ function ProgressBars() {
                 )}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
                 centerX={50}
                 centerY={50}
                 strokeWidth={5}
@@ -494,7 +494,7 @@ function ProgressBars() {
                 percentage={Math.max(percentage, 0.1)}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
               ></StraightProgressBar>
             </div>
 
@@ -507,7 +507,7 @@ function ProgressBars() {
                 percentage={-percentage * 1.5}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
+                colorBase="#1a201a"
               ></StraightProgressBar>
             </div>
 
@@ -520,7 +520,7 @@ function ProgressBars() {
                 percentage={Math.max(100 - percentage, 0.1)}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></StraightProgressBar>
             </div>
 
@@ -539,10 +539,10 @@ function ProgressBars() {
                 </div>
               </div>
               <StraightProgressBar
-                percentage={101 + percentage}
+                percentage={100 + percentage * 1.05}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
+                colorBase="#1a1a2a"
               ></StraightProgressBar>
             </div>
           </div>
@@ -558,7 +558,7 @@ function ProgressBars() {
                 percentage={percentage}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
-                colorBase="#1a1a1a"
+                colorBase="#2a1a1a"
               ></WaterProgressBar>
             </div>
 
@@ -571,7 +571,6 @@ function ProgressBars() {
                 percentage={percentage}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
-                colorBase="#1a1a1a"
               ></WaterProgressBar>
             </div>
 
@@ -584,7 +583,6 @@ function ProgressBars() {
                 percentage={100 - percentage}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
-                colorBase="#1a1a1a"
               ></WaterProgressBar>
             </div>
 
@@ -606,7 +604,6 @@ function ProgressBars() {
                 percentage={100 - percentage}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
-                colorBase="#1a1a1a"
               ></WaterProgressBar>
             </div>
           </div>
