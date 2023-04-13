@@ -146,7 +146,7 @@ function WaterProgressBar(props) {
           strokeOpacity="0%"
           strokeWidth={lineStrokeWidth}
           transform={`translate(${moveX.current}, ${moveY.current})`}
-          fill={`url(#${props.colorId})`}
+          fill={`url(#${linearGradientId.current})`}
           fillOpacity="5%"
         />
       </svg>
