@@ -406,7 +406,7 @@ function ProgressBars() {
             <div className="CircularProgressBarSpace">
               <div className="Label"></div>
               <CircularProgressBar
-                percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
+                percentage={Math.max((remainingMSec / maxMSec) * 100, 0.2)}
                 colorLeft="#ff9500"
                 colorRight="#ff0099"
                 colorBase="#1a1a1a"
@@ -423,7 +423,7 @@ function ProgressBars() {
                 <div className="PercentUnit">%</div>
               </div>
               <CircularProgressBar
-                percentage={Math.min(-(remainingMSec / maxMSec) * 100, -0.5)}
+                percentage={Math.min(-(remainingMSec / maxMSec) * 100, -0.2)}
                 colorLeft="#00b09b"
                 colorRight="#96c93d"
                 colorBase="#1a1a1a"
@@ -442,7 +442,7 @@ function ProgressBars() {
               <CircularProgressBar
                 percentage={Math.max(
                   ((maxMSec - remainingMSec) / maxMSec) * 100,
-                  0.5
+                  0.2
                 )}
                 colorLeft="#00e1ff"
                 colorRight="#7300ff"
@@ -471,7 +471,7 @@ function ProgressBars() {
               <CircularProgressBar
                 percentage={Math.min(
                   -((maxMSec - remainingMSec) / maxMSec) * 100,
-                  -0.5
+                  -0.2
                 )}
                 colorLeft="#0093e9"
                 colorRight="#80d0c7"
