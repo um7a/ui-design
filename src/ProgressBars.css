@@ -36,7 +36,7 @@
 .ProgressBars .Main .ProgressBarGridSpace {
   width: 50%;
   height: 115px;
-  min-width: 400px;
+  min-width: 600px;
   margin: 0 auto;
   padding: 0;
   display: flex;

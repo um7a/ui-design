@@ -67,7 +67,6 @@ function StraightProgressBar(props) {
 
   const minX = 5;
   const maxX = 95;
-  const endX = useRef(minX + props.percentage * (maxX - minX));
 
   const y = 50;
 
@@ -173,10 +172,6 @@ function StraightProgressBar(props) {
     return () => clearInterval(intervalId);
   }, [initialized]);
 
-  useEffect(() => {
-    endX.current = minX + (props.percentage / 100) * (maxX - minX);
-  }, [props.percentage]);
-
   return (
     <div className="StraightProgressBar">
       <svg id="straight" width="100" height="100">
@@ -202,11 +197,15 @@ function StraightProgressBar(props) {
         />
 
         <path
-          d={`M ${minX} ${y} L ${endX.current} ${y}`}
+          d={`M ${minX} ${y} L ${maxX} ${y}`}
           stroke={`url(#${linearGradientId.current})`}
           strokeLinecap="round"
           strokeWidth={lineStrokeWidth}
           fillOpacity="0%"
+          strokeDasharray={`${maxX - minX}, ${(maxX - minX) * 1.5}`}
+          strokeDashoffset={
+            maxX - minX - (maxX - minX) * (props.percentage / 100)
+          }
         />
       </svg>
     </div>
