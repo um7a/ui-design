@@ -163,454 +163,237 @@ function ProgressBars() {
     return () => clearInterval(newIntervalId);
   }, [isResetting, isInitialized]);
 
-  if (isResetting === false) {
-    return (
-      <div className="ProgressBars">
-        <HamburgerMenu></HamburgerMenu>
+  return (
+    <div className="ProgressBars">
+      <HamburgerMenu></HamburgerMenu>
 
-        <div className="Main">
-          <div className="TitleSpace">
-            <p>Progress Bars</p>
+      <div className="Main">
+        <div className="TitleSpace">
+          <p>Progress Bars</p>
+        </div>
+
+        <div className="GridDescriptionSpace">
+          <p>Circular</p>
+        </div>
+
+        <div className="ProgressBarGridSpace">
+          <div className="CircularProgressBarSpace">
+            <div className="Label"></div>
+            <CircularProgressBar
+              percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
+              colorLeft="#ff9500"
+              colorRight="#ff0099"
+              colorBase="#2a1a1a"
+              centerX={50}
+              centerY={50}
+              strokeWidth={5}
+              radius={45}
+            ></CircularProgressBar>
           </div>
 
-          <div className="GridDescriptionSpace">
-            <p>Circular</p>
+          <div className="CircularProgressBarSpace">
+            <div className="Label">
+              <div className="Percentage">{Math.ceil(percentage)}</div>
+              <div className="PercentUnit">%</div>
+            </div>
+            <CircularProgressBar
+              percentage={
+                isResetting
+                  ? Math.min(-(remainingMSec / maxMSec) * 100, -0.2)
+                  : Math.max((remainingMSec / maxMSec) * 100, 0.5)
+              }
+              colorLeft="#00b09b"
+              colorRight="#96c93d"
+              colorBase="#1a201a"
+              centerX={50}
+              centerY={50}
+              strokeWidth={5}
+              radius={45}
+            ></CircularProgressBar>
           </div>
 
-          <div className="ProgressBarGridSpace">
-            <div className="CircularProgressBarSpace">
-              <div className="Label"></div>
-              <CircularProgressBar
-                percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
+          <div className="CircularProgressBarSpace">
+            <div className="Label">
+              <div className="Second">{remainingSec}</div>
+              <div className="SecondUnit">Sec</div>
             </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.max((remainingMSec / maxMSec) * 100, 0.5)}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-                colorBase="#1a201a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.max(
-                  ((maxMSec - remainingMSec) / maxMSec) * 100,
-                  0.5
-                )}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-                colorBase="#1a1a2a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.max(
-                  ((maxMSec - remainingMSec) / maxMSec) * 100,
-                  0.5
-                )}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-                colorBase="#1a1a2a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
+            <CircularProgressBar
+              percentage={Math.max(
+                ((maxMSec - remainingMSec) / maxMSec) * 100,
+                0.5
+              )}
+              colorLeft="#00e1ff"
+              colorRight="#7300ff"
+              colorBase="#1a1a2a"
+              centerX={50}
+              centerY={50}
+              strokeWidth={5}
+              radius={45}
+            ></CircularProgressBar>
           </div>
 
-          <div className="GridDescriptionSpace">
-            <p>Straight</p>
+          <div className="CircularProgressBarSpace">
+            <div className="Label">
+              <div className="ClockHour">
+                {padByZero(remainingClockHour, 2)}
+              </div>
+              <div className="ClockColon">:</div>
+              <div className="ClockMinute">
+                {padByZero(remainingClockMin, 2)}
+              </div>
+              <div className="ClockColon">:</div>
+              <div className="ClockSecond">
+                {padByZero(remainingClockSec, 2)}
+              </div>
+            </div>
+            <CircularProgressBar
+              percentage={
+                isResetting
+                  ? Math.min(-((maxMSec - remainingMSec) / maxMSec) * 100, -0.2)
+                  : Math.max(((maxMSec - remainingMSec) / maxMSec) * 100, 0.5)
+              }
+              colorLeft="#0093e9"
+              colorRight="#80d0c7"
+              colorBase="#1a1a2a"
+              centerX={50}
+              centerY={50}
+              strokeWidth={5}
+              radius={45}
+            ></CircularProgressBar>
           </div>
-          <div className="ProgressBarGridSpace">
-            <div className="StraightProgressBarSpace">
-              <div className="Label"></div>
-              <StraightProgressBar
-                percentage={Math.max(percentage, 0.1)}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-              ></StraightProgressBar>
-            </div>
+        </div>
 
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
-              </div>
-              <StraightProgressBar
-                percentage={percentage}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-                colorBase="#1a201a"
-              ></StraightProgressBar>
-            </div>
-
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <StraightProgressBar
-                percentage={Math.max(100 - percentage, 0.1)}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-                colorBase="#1a1a2a"
-              ></StraightProgressBar>
-            </div>
-
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <StraightProgressBar
-                percentage={100 - percentage}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-                colorBase="#1a1a2a"
-              ></StraightProgressBar>
-            </div>
+        <div className="GridDescriptionSpace">
+          <p>Straight</p>
+        </div>
+        <div className="ProgressBarGridSpace">
+          <div className="StraightProgressBarSpace">
+            <div className="Label"></div>
+            <StraightProgressBar
+              percentage={Math.max(percentage, 0.1)}
+              colorLeft="#ff9500"
+              colorRight="#ff0099"
+              colorBase="#2a1a1a"
+            ></StraightProgressBar>
           </div>
 
-          <div className="GridDescriptionSpace">
-            <p>Water</p>
+          <div className="StraightProgressBarSpace">
+            <div className="Label">
+              <div className="Percentage">{Math.ceil(percentage)}</div>
+              <div className="PercentUnit">%</div>
+            </div>
+            <StraightProgressBar
+              percentage={isResetting ? -percentage * 1.5 : percentage}
+              colorLeft="#00b09b"
+              colorRight="#96c93d"
+              colorBase="#1a201a"
+            ></StraightProgressBar>
           </div>
 
-          <div className="ProgressBarGridSpace">
-            <div className="WaterProgressBarSpace">
-              <div className="Label"></div>
-              <WaterProgressBar
-                percentage={percentage}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-              ></WaterProgressBar>
+          <div className="StraightProgressBarSpace">
+            <div className="Label">
+              <div className="Second">{remainingSec}</div>
+              <div className="SecondUnit">Sec</div>
             </div>
+            <StraightProgressBar
+              percentage={Math.max(100 - percentage, 0.1)}
+              colorLeft="#00e1ff"
+              colorRight="#7300ff"
+              colorBase="#1a1a2a"
+            ></StraightProgressBar>
+          </div>
 
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
+          <div className="StraightProgressBarSpace">
+            <div className="Label">
+              <div className="ClockHour">
+                {padByZero(remainingClockHour, 2)}
               </div>
-              <WaterProgressBar
-                percentage={percentage}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-                colorBase="#1a201a"
-              ></WaterProgressBar>
+              <div className="ClockColon">:</div>
+              <div className="ClockMinute">
+                {padByZero(remainingClockMin, 2)}
+              </div>
+              <div className="ClockColon">:</div>
+              <div className="ClockSecond">
+                {padByZero(remainingClockSec, 2)}
+              </div>
             </div>
+            <StraightProgressBar
+              percentage={
+                isResetting ? 100 + percentage * 1.05 : 100 - percentage
+              }
+              colorLeft="#0093e9"
+              colorRight="#80d0c7"
+              colorBase="#1a1a2a"
+            ></StraightProgressBar>
+          </div>
+        </div>
 
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <WaterProgressBar
-                percentage={100 - percentage}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-                colorBase="#1a1a2a"
-              ></WaterProgressBar>
-            </div>
+        <div className="GridDescriptionSpace">
+          <p>Water</p>
+        </div>
 
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <WaterProgressBar
-                percentage={100 - percentage}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-                colorBase="#1a1a2a"
-              ></WaterProgressBar>
+        <div className="ProgressBarGridSpace">
+          <div className="WaterProgressBarSpace">
+            <div className="Label"></div>
+            <WaterProgressBar
+              percentage={percentage}
+              colorLeft="#ff9500"
+              colorRight="#ff0099"
+              colorBase="#2a1a1a"
+            ></WaterProgressBar>
+          </div>
+
+          <div className="WaterProgressBarSpace">
+            <div className="Label">
+              <div className="Percentage">{Math.ceil(percentage)}</div>
+              <div className="PercentUnit">%</div>
             </div>
+            <WaterProgressBar
+              percentage={percentage}
+              colorLeft="#00b09b"
+              colorRight="#96c93d"
+              colorBase="#1a201a"
+            ></WaterProgressBar>
+          </div>
+
+          <div className="WaterProgressBarSpace">
+            <div className="Label">
+              <div className="Second">{remainingSec}</div>
+              <div className="SecondUnit">Sec</div>
+            </div>
+            <WaterProgressBar
+              percentage={100 - percentage}
+              colorLeft="#00e1ff"
+              colorRight="#7300ff"
+              colorBase="#1a1a2a"
+            ></WaterProgressBar>
+          </div>
+
+          <div className="WaterProgressBarSpace">
+            <div className="Label">
+              <div className="ClockHour">
+                {padByZero(remainingClockHour, 2)}
+              </div>
+              <div className="ClockColon">:</div>
+              <div className="ClockMinute">
+                {padByZero(remainingClockMin, 2)}
+              </div>
+              <div className="ClockColon">:</div>
+              <div className="ClockSecond">
+                {padByZero(remainingClockSec, 2)}
+              </div>
+            </div>
+            <WaterProgressBar
+              percentage={100 - percentage}
+              colorLeft="#0093e9"
+              colorRight="#80d0c7"
+              colorBase="#1a1a2a"
+            ></WaterProgressBar>
           </div>
         </div>
       </div>
-    );
-  } else {
-    return (
-      <div className="ProgressBars">
-        <HamburgerMenu></HamburgerMenu>
-
-        <div className="Main">
-          <div className="TitleSpace">
-            <p>Progress Bars</p>
-          </div>
-
-          <div className="GridDescriptionSpace">
-            <p>Circular</p>
-          </div>
-
-          <div className="ProgressBarGridSpace">
-            <div className="CircularProgressBarSpace">
-              <div className="Label"></div>
-              <CircularProgressBar
-                percentage={Math.max((remainingMSec / maxMSec) * 100, 0.2)}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.min(-(remainingMSec / maxMSec) * 100, -0.2)}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-                colorBase="#1a201a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.max(
-                  ((maxMSec - remainingMSec) / maxMSec) * 100,
-                  0.2
-                )}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-                colorBase="#1a1a2a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-
-            <div className="CircularProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <CircularProgressBar
-                percentage={Math.min(
-                  -((maxMSec - remainingMSec) / maxMSec) * 100,
-                  -0.2
-                )}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-                colorBase="#1a1a2a"
-                centerX={50}
-                centerY={50}
-                strokeWidth={5}
-                radius={45}
-              ></CircularProgressBar>
-            </div>
-          </div>
-
-          <div className="GridDescriptionSpace">
-            <p>Straight</p>
-          </div>
-          <div className="ProgressBarGridSpace">
-            <div className="StraightProgressBarSpace">
-              <div className="Label"></div>
-              <StraightProgressBar
-                percentage={Math.max(percentage, 0.1)}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-              ></StraightProgressBar>
-            </div>
-
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
-              </div>
-              <StraightProgressBar
-                percentage={-percentage * 1.5}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-                colorBase="#1a201a"
-              ></StraightProgressBar>
-            </div>
-
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <StraightProgressBar
-                percentage={Math.max(100 - percentage, 0.1)}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-                colorBase="#1a1a2a"
-              ></StraightProgressBar>
-            </div>
-
-            <div className="StraightProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <StraightProgressBar
-                percentage={100 + percentage * 1.05}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-                colorBase="#1a1a2a"
-              ></StraightProgressBar>
-            </div>
-          </div>
-
-          <div className="GridDescriptionSpace">
-            <p>Water</p>
-          </div>
-
-          <div className="ProgressBarGridSpace">
-            <div className="WaterProgressBarSpace">
-              <div className="Label"></div>
-              <WaterProgressBar
-                percentage={percentage}
-                colorLeft="#ff9500"
-                colorRight="#ff0099"
-                colorBase="#2a1a1a"
-              ></WaterProgressBar>
-            </div>
-
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="Percentage">{Math.ceil(percentage)}</div>
-                <div className="PercentUnit">%</div>
-              </div>
-              <WaterProgressBar
-                percentage={percentage}
-                colorLeft="#00b09b"
-                colorRight="#96c93d"
-              ></WaterProgressBar>
-            </div>
-
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="Second">{remainingSec}</div>
-                <div className="SecondUnit">Sec</div>
-              </div>
-              <WaterProgressBar
-                percentage={100 - percentage}
-                colorLeft="#00e1ff"
-                colorRight="#7300ff"
-              ></WaterProgressBar>
-            </div>
-
-            <div className="WaterProgressBarSpace">
-              <div className="Label">
-                <div className="ClockHour">
-                  {padByZero(remainingClockHour, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockMinute">
-                  {padByZero(remainingClockMin, 2)}
-                </div>
-                <div className="ClockColon">:</div>
-                <div className="ClockSecond">
-                  {padByZero(remainingClockSec, 2)}
-                </div>
-              </div>
-              <WaterProgressBar
-                percentage={100 - percentage}
-                colorLeft="#0093e9"
-                colorRight="#80d0c7"
-              ></WaterProgressBar>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default ProgressBars;
