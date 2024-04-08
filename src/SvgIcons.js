@@ -1,5 +1,4 @@
 import "./SvgIcons.css";
-import HamburgerMenu from "./HamburgerMenu";
 import HamburgerIcon from "./svgIcons/HamburgerIcon";
 import HomeIcon from "./svgIcons/HomeIcon";
 import TileViewIcon from "./svgIcons/TileViewIcon";
@@ -15,14 +14,9 @@ function SvgIcons() {
 
   return (
     <div className="SvgIcons">
-      <HamburgerMenu></HamburgerMenu>
-
       <div className="Main">
         <div className="TitleSpace">
           <p>SVG icons</p>
-        </div>
-        <div className="DescriptionSpace">
-          <p>This page displays SVG icons.</p>
         </div>
         <div className="IconGridSpace">
           <div className="IconSpace">

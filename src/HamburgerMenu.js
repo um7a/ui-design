@@ -1,19 +1,30 @@
 import "./HamburgerMenu.css";
 import HamburgerIcon from "./svgIcons/HamburgerIcon";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const widthMin = "20px";
 const widthMax = "230px";
-const contractedBgColor = "#1a1a1a";
+const contractedBgColor = "#0000";
 const expandedBgColor = "#1e1e1e";
 
 function HamburgerMenu() {
-  // state for hamburger icon
   const [expanded, setExpanded] = useState(false);
-
   const [width, setWidth] = useState(widthMin);
+  const hamburgerMenu = useRef();
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (hamburgerMenu.current && !hamburgerMenu.current.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     if (expanded) {
@@ -27,17 +38,22 @@ function HamburgerMenu() {
   return (
     <div
       className="HamburgerMenu"
+      ref={hamburgerMenu}
       style={{
         "--bg-color": `${expanded ? expandedBgColor : contractedBgColor}`,
         "--width": width,
       }}
     >
-      <HamburgerIcon
-        expanded={expanded}
-        setExpanded={setExpanded}
-        style={{ "text-align": "right" }}
-      ></HamburgerIcon>
-
+      <div
+        onClick={() => {
+          setExpanded(!expanded);
+        }}
+      >
+        <HamburgerIcon
+          expanded={expanded}
+          style={{ "text-align": "right" }}
+        ></HamburgerIcon>
+      </div>
       {expanded ? (
         <>
           <div className="MenuItem" style={{ "--animation-delay": "0.5s" }}>
@@ -45,7 +61,7 @@ function HamburgerMenu() {
           </div>
 
           <div className="MenuItem" style={{ "--animation-delay": "0.6s" }}>
-            <Link to="/svg-icons">SVG icons</Link>
+            <Link to="/svg-icons">SVG Icons</Link>
           </div>
 
           <div className="MenuItem" style={{ "--animation-delay": "0.7s" }}>

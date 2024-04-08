@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
 import "./ProgressBars.css";
-import HamburgerMenu from "./HamburgerMenu";
 import CircularProgressBar from "./progressBars/CircularProgressBar";
 import StraightProgressBar from "./progressBars/StraightProgressBar";
 import WaterProgressBar from "./progressBars/WaterProgressBar";
@@ -165,8 +164,6 @@ function ProgressBars() {
 
   return (
     <div className="ProgressBars">
-      <HamburgerMenu></HamburgerMenu>
-
       <div className="Main">
         <div className="TitleSpace">
           <p>Progress Bars</p>

@@ -9,27 +9,63 @@
 
 .Home .Main .TitleSpace {
   text-align: center;
+  margin: 80px auto 50px;
 }
 
 .Home .Main .TitleSpace p {
   color: #e2e2e2;
   font-size: 50px;
   font-weight: 100;
-  margin: 50px 0 20px;
 }
 
 .Home .Main .DescriptionSpace {
   margin: 20px auto;
-  text-align: center;
 }
 
 .Home .Main .DescriptionSpace p {
   color: #858585;
   font-weight: 200;
+  margin: 0;
 }
 
 .Home .Main .DescriptionSpace a {
   color: #b8b8b8;
   font-weight: 200;
   text-decoration: none;
+}
+
+/*
+ * For PC
+ */
+@media screen and (min-width: 960px) {
+  .Home .Main .DescriptionSpace {
+    width: 580px;
+    margin: 20px auto;
+  }
+}
+
+/*
+ * For Tablet
+ */
+@media screen and (max-width: 959px) and (min-width: 520px) {
+  .Home .Main .TitleSpace {
+    width: 480px;
+  }
+
+  .Home .Main .DescriptionSpace {
+    width: 480px;
+  }
+}
+
+/*
+ * For Smart Phone
+ */
+@media screen and (max-width: 519px) {
+  .Home .Main .TitleSpace {
+    width: 200px;
+  }
+
+  .Home .Main .DescriptionSpace {
+    width: 200px;
+  }
 }

@@ -24,8 +24,6 @@ function HamburgerIcon(props) {
   const middleOpacity = useRef(100);
 
   const expand = () => {
-    props.setExpanded(true);
-
     if (middleOpacity.current <= 0) {
       return;
     }
@@ -51,7 +49,6 @@ function HamburgerIcon(props) {
   };
 
   const contract = () => {
-    props.setExpanded(false);
     if (middleOpacity.current >= 100) {
       return;
     }
@@ -77,7 +74,7 @@ function HamburgerIcon(props) {
   };
 
   const move = () => {
-    if (props.expanded === true) {
+    if (props.expanded === false) {
       contract();
     } else {
       expand();
@@ -91,9 +88,13 @@ function HamburgerIcon(props) {
     setBottomLine(svg.getElementById("bottom"));
   }, []);
 
+  useEffect(() => {
+    move();
+  }, [props.expanded]);
+
   return (
     <div className="HamburgerIcon">
-      <svg id={elemId} width="22" height="22" onClick={move}>
+      <svg id={elemId} width="22" height="22">
         <line
           id="top"
           x1="1"

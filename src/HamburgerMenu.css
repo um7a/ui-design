@@ -3,6 +3,14 @@
   padding: 10px 10px;
   transition: all 0.8s ease;
   width: var(--width);
+  min-width: var(--width);
+  height: 100%;
+  /*
+   * Set position:fixed; and increase the z-index value to
+   * bring it to the front.
+   */
+  position: fixed;
+  z-index: 999;
 }
 
 .HamburgerMenu :hover {
